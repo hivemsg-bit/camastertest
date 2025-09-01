@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CA Test Portal - Student Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 350px;
+      text-align: center;
+    }
+    h2 { margin-bottom: 20px; }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    button {
+      width: 95%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #007bff;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover { background: #0056b3; }
+    .msg { margin-top: 15px; color: green; font-weight: bold; }
+    .error { margin-top: 15px; color: red; font-weight: bold; }
+    #dashboard { display: none; }
+    .dash-btn {
+      display: block;
+      margin: 15px 0;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #28a745;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .dash-btn:hover { background: #218838; }
+  </style>
+</head>
+<body>
+
+  <!-- Login Box -->
+  <div class="box" id="login-box">
+    <h2>Student Login</h2>
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="signup()">Sign Up</button>
+    <button onclick="login()">Login</button>
+    <div id="message"></div>
+  </div>
+
+  <!-- Student Dashboard -->
+  <div class="box" id="dashboard">
+    <h2>Welcome Student 🎓</h2>
+    <button class="dash-btn">📥 Download Test</button>
+    <button class="dash-btn">📤 Upload Answer Sheet</button>
+    <button class="dash-btn">📊 View Marks</button>
+    <button class="dash-btn" style="background:#dc3545;" onclick="logout()">Logout</button>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut }
+      from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    // ✅ Your Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyA0xq49M3FY4T8dTKTMFX5YAgYZx2PPOW4",
+      authDomain: "ca-test-series-78af3.firebaseapp.com",
+      projectId: "ca-test-series-78af3",
+      storageBucket: "ca-test-series-78af3.firebasestorage.app",
+      messagingSenderId: "51087374287",
+      appId: "1:51087374287:web:f90b0d7034cd815e6504ba"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const loginBox = document.getElementById("login-box");
+    const dashboard = document.getElementById("dashboard");
+    const msgDiv = document.getElementById("message");
+
+    // Sign Up
+    async function signup() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      msgDiv.innerHTML = "";
+      try {
+        const userCred = await createUserWithEmailAndPassword(auth, email, password);
+        msgDiv.innerHTML = `<p class='msg'>Signup Success: ${userCred.user.email}</p>`;
+      } catch (e) {
+        msgDiv.innerHTML = `<p class='error'>Error: ${e.message}</p>`;
+      }
+    }
+
+    // Login
+    async function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      msgDiv.innerHTML = "";
+      try {
+        const userCred = await signInWithEmailAndPassword(auth, email, password);
+        msgDiv.innerHTML = `<p class='msg'>Login Success: ${userCred.user.email}</p>`;
+        loginBox.style.display = "none";
+        dashboard.style.display = "block";
+      } catch (e) {
+        msgDiv.innerHTML = `<p class='error'>Error: ${e.message}</p>`;
+      }
+    }
+
+    // Logout
+    async function logout() {
+      await signOut(auth);
+      dashboard.style.display = "none";
+      loginBox.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
