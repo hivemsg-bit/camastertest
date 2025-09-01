@@ -1,255 +1,983 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CA MasterTest - Live Version</title>
+    <title>CA MasterTest - Premium Test Series for CA Exams</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* All the CSS from earlier remains here */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f5f7f9;
-            color: #333;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        
+        :root {
+            --primary: #2563eb;
+            --secondary: #0f172a;
+            --accent: #f59e0b;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --success: #22c55e;
+            --error: #ef4444;
+        }
+        
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
+        
+        /* Header */
         header {
-            background: linear-gradient(135deg, #2563eb, #1e40af);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 20px 0;
-            text-align: center;
-            border-radius: 0 0 10px 10px;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        .step-box {
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .cta-button {
+            background-color: var(--accent);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #e69008;
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(37, 99, 235, 0.9), rgba(15, 23, 42, 0.9)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3') no-repeat center center/cover;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: linear-gradient(to right, #f8fafc, #e2e8f0);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .testimonial-card {
             background: white;
             border-radius: 10px;
-            padding: 25px;
-            margin: 20px 0;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border-left: 5px solid #2563eb;
+            padding: 30px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
-        .step-number {
-            background: #2563eb;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+        
+        .testimonial-card .quote {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .testimonial-content {
+            margin-bottom: 20px;
+            font-style: italic;
+            color: #475569;
+        }
+        
+        .testimonial-author {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-weight: bold;
+        }
+        
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
             margin-right: 15px;
         }
-        h1 {
-            color: #1e40af;
+        
+        /* Pricing */
+        .pricing {
+            padding: 80px 0;
+            background-color: white;
+            display: none;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .pricing-card {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .pricing-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .pricing-card.popular {
+            border: 2px solid var(--accent);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.popular::before {
+            content: "MOST POPULAR";
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary);
             margin: 20px 0;
         }
-        h2 {
-            color: #2563eb;
+        
+        .price span {
+            font-size: 1rem;
+            color: #64748b;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
         }
-        .completed {
-            border-left-color: #10b981;
+        
+        .pricing-features li i {
+            color: #22c55e;
+            margin-right: 10px;
         }
-        .completed .step-number {
-            background: #10b981;
+        
+        /* USP Section */
+        .usp {
+            padding: 80px 0;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
         }
-        .note {
-            background: #fffbeb;
-            border-left: 4px solid #f59e0b;
-            padding: 15px;
-            border-radius: 5px;
+        
+        .usp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .usp-card {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .usp-card i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        .usp-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Enrollment Section */
+        .enrollment {
+            padding: 80px 0;
+            background-color: white;
+            display: none;
+        }
+        
+        .main-content {
+            display: flex;
+            gap: 40px;
+            margin: 40px 0;
+        }
+        
+        .form-container {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .info-container {
+            flex: 1;
+        }
+        
+        .page-title {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #e69008;
+            transform: translateY(-2px);
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
+        /* Test Series Cards */
+        .test-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .test-card {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .test-card h3 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .test-card .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 10px 0;
+            text-align: center;
+        }
+        
+        .test-card ul {
+            list-style: none;
             margin: 15px 0;
         }
-        .btn {
-            background: #2563eb;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin: 10px 5px;
-            display: inline-block;
-            text-decoration: none;
+        
+        .test-card ul li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
         }
-        .btn:hover {
-            background: #1e40af;
+        
+        .test-card ul li i {
+            color: var(--success);
+            margin-right: 8px;
         }
-        .btn-success {
-            background: #10b981;
-        }
-        .btn-success:hover {
-            background: #059669;
-        }
-        .progress-container {
-            background: #e5e7eb;
-            height: 10px;
-            border-radius: 5px;
-            margin: 30px 0;
-            overflow: hidden;
-        }
-        .progress-bar {
-            height: 100%;
-            background: #2563eb;
-            width: 20%;
-            border-radius: 5px;
-            transition: width 0.5s ease;
-        }
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            color: #6b7280;
-            font-size: 14px;
-        }
-        .completed-steps {
-            background: #10b981;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            margin: 10px 0;
+        
+        /* Alert Messages */
+        .alert {
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
             display: none;
+        }
+        
+        .alert-success {
+            background-color: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+        
+        .alert-error {
+            background-color: #fee2e2;
+            color: #b91c1c;
+            border: 1px solid #fecaca;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .pricing-card.popular {
+                transform: scale(1);
+            }
+            
+            .main-content {
+                flex-direction: column;
+            }
+        }
+        
+        /* Active section */
+        .active-section {
+            display: block !important;
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <h1>CA MasterTest Website Launch Guide</h1>
-        <p>Step-by-Step Instructions to Get Your Website Live</p>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>CA MasterTest</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#" onclick="showSection('home')">Home</a></li>
+                        <li><a href="#" onclick="showSection('pricing')">Pricing</a></li>
+                        <li><a href="#" onclick="showSection('enrollment')">Enroll Now</a></li>
+                        <li><a href="#">Results</a></li>
+                        <li><a href="#">About Us</a></li>
+                    </ul>
+                </nav>
+                <a href="#" class="cta-button" onclick="showSection('enrollment')">Free Demo Test</a>
+            </div>
+        </div>
     </header>
 
-    <div class="container">
-        <div class="progress-container">
-            <div class="progress-bar" id="progressBar"></div>
-        </div>
-
-        <div id="completedSteps" class="completed-steps">
-            Completed Steps: <span id="completedCount">0</span>/5
-        </div>
-
-        <div class="step-box" id="step1">
-            <h2><div class="step-number">1</div>Save Your Website File</h2>
-            <p>Copy the HTML code and save it as <strong>index.html</strong> on your computer.</p>
-            <p>Make sure the file has the <strong>.html</strong> extension.</p>
-            <div class="note">
-                <strong>Note:</strong> You can use Notepad (Windows) or TextEdit (Mac) to create the file. 
-                Just make sure to select "All Files" when saving and add the .html extension.
+    <!-- Home Section -->
+    <section id="home" class="active-section">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="container">
+                <h1>India's Most Effective CA Test Series</h1>
+                <p>Join 12,000+ CA aspirants who have achieved their dream ranks with our scientifically designed test series program</p>
+                <a href="#" class="cta-button" onclick="showSection('enrollment')">Enroll Now <i class="fas fa-arrow-right"></i></a>
             </div>
-            <button class="btn" onclick="markCompleted(1)">Mark as Completed</button>
         </div>
 
-        <div class="step-box" id="step2">
-            <h2><div class="step-number">2</div>Create GitHub Account</h2>
-            <p>Go to <a href="https://github.com/" target="_blank">GitHub.com</a> and create a free account.</p>
-            <p>GitHub will host your website for free with GitHub Pages.</p>
-            <div class="note">
-                <strong>Note:</strong> Choose a username that you might want to use in your website URL 
-                (e.g., github.com/yourusername/camastertest)
+        <!-- Features Section -->
+        <div class="features">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Why Our Test Series Beats Competition</h2>
+                    <p>We've revolutionized CA test preparation with these unique features</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-trophy"></i>
+                        <h3>Rank Improvement Guarantee</h3>
+                        <p>Improve your rank by at least 50% or get 100% refund - no questions asked!</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-brain"></i>
+                        <h3>Smart Analysis</h3>
+                        <p>Get personalized feedback based on 30+ parameters that affect your exam performance</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <h3>Topper's Strategy Sessions</h3>
+                        <p>Weekly live sessions with CA toppers who share their exact preparation strategies</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-book-open"></i>
+                        <h3>ICAI Pattern Precision</h3>
+                        <p>Our tests are designed by ex-ICAI examiners who know exactly what appears in exams</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-clock"></i>
+                        <h3>Time Management System</h3>
+                        <p>Proprietary time allocation strategy that helps you complete papers 20% faster</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Peer Learning Groups</h3>
+                        <p>Get placed in small groups of serious aspirants for motivation and knowledge sharing</p>
+                    </div>
+                </div>
             </div>
-            <button class="btn" onclick="markCompleted(2)">Mark as Completed</button>
         </div>
 
-        <div class="step-box" id="step3">
-            <h2><div class="step-number">3</div>Create a New Repository</h2>
-            <p>After logging in to GitHub:</p>
-            <ol>
-                <li>Click the "+" icon in the top right and select "New repository"</li>
-                <li>Name it <strong>camastertest</strong> (or similar)</li>
-                <li>Make sure it's set to <strong>Public</strong></li>
-                <li>Check "Add a README file"</li>
-                <li>Click "Create repository"</li>
-            </ol>
-            <div class="note">
-                <strong>Note:</strong> The repository name will be part of your website URL, 
-                so choose something professional and easy to remember.
+        <!-- Testimonials -->
+        <div class="testimonials">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Success Stories</h2>
+                    <p>Hear from our students who achieved exceptional results</p>
+                </div>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <div class="quote"><i class="fas fa-quote-left"></i></div>
+                        <p class="testimonial-content">I went from AIR 412 to AIR 87 with their test series. The detailed feedback helped me identify my weak areas that I didn't even know existed!</p>
+                        <div class="testimonial-author">
+                            <div>
+                                <h4>Rahul Sharma</h4>
+                                <p>CA Final, AIR 87</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="quote"><i class="fas fa-quote-left"></i></div>
+                        <p class="testimonial-content">The time management techniques were a game-changer for me. I could attempt 15% more questions in the actual exam compared to my mocks.</p>
+                        <div class="testimonial-author">
+                            <div>
+                                <h4>Priya Patel</h4>
+                                <p>CA Intermediate, AIR 53</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="quote"><i class="fas fa-quote-left"></i></div>
+                        <p class="testimonial-content">The analysis pointed out that I was making careless mistakes in calculation-based questions. Working on that alone improved my score by 18 marks.</p>
+                        <div class="testimonial-author">
+                            <div>
+                                <h4>Amit Kumar</h4>
+                                <p>CA Foundation, AIR 29</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <button class="btn" onclick="markCompleted(3)">Mark as Completed</button>
         </div>
 
-        <div class="step-box" id="step4">
-            <h2><div class="step-number">4</div>Upload Your Website File</h2>
-            <p>In your new repository:</p>
-            <ol>
-                <li>Click "Add file" → "Upload files"</li>
-                <li>Drag and drop your <strong>index.html</strong> file</li>
-                <li>Add a commit message like "Add website file"</li>
-                <li>Click "Commit changes"</li>
-            </ol>
-            <div class="note">
-                <strong>Note:</strong> You can upload additional files like images later, 
-                but for now, just focus on getting the HTML file online.
+        <!-- USP Section -->
+        <div class="usp">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Unique Approach</h2>
+                    <p>What makes us different from other test series providers</p>
+                </div>
+                <div class="usp-grid">
+                    <div class="usp-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Performance Tracking</h3>
+                        <p>Track your progress across 15+ metrics with detailed analytics</p>
+                    </div>
+                    <div class="usp-card">
+                        <i class="fas fa-user-graduate"></i>
+                        <h3>Mentorship Program</h3>
+                        <p>Get assigned a mentor who guides you throughout your preparation</p>
+                    </div>
+                    <div class="usp-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Mobile App</h3>
+                        <p>Take tests anytime, anywhere with our dedicated mobile application</p>
+                    </div>
+                    <div class="usp-card">
+                        <i class="fas fa-book"></i>
+                        <h3>Concept Revision</h3>
+                        <p>Integrated revision modules that strengthen your weak concepts</p>
+                    </div>
+                </div>
             </div>
-            <button class="btn" onclick="markCompleted(4)">Mark as Completed</button>
         </div>
+    </section>
 
-        <div class="step-box" id="step5">
-            <h2><div class="step-number">5</div>Enable GitHub Pages</h2>
-            <p>Now enable GitHub Pages to make your website live:</p>
-            <ol>
-                <li>Go to your repository's <strong>Settings</strong> tab</li>
-                <li>Click <strong>Pages</strong> in the left sidebar</li>
-                <li>Under "Source", select <strong>main</strong> branch</li>
-                <li>Click <strong>Save</strong></li>
-                <li>Wait a few minutes, then refresh the page</li>
-                <li>You'll see a message with your live website URL!</li>
-            </ol>
-            <div class="note">
-                <strong>Note:</strong> Your website will be available at:<br>
-                <strong>https://yourusername.github.io/camastertest/</strong>
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Choose Your Plan</h2>
+                <p>Flexible options designed for different needs and budgets</p>
             </div>
-            <button class="btn btn-success" onclick="markCompleted(5)">All Steps Completed!</button>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Foundation Pack</h3>
+                    <div class="price">₹4,999 <span>/series</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check-circle"></i> 15 Full-length Tests</li>
+                        <li><i class="fas fa-check-circle"></i> Basic Performance Analysis</li>
+                        <li><i class="fas fa-check-circle"></i> Email Support</li>
+                        <li><i class="fas fa-check-circle"></i> 6 Months Access</li>
+                    </ul>
+                    <a href="#" class="cta-button" onclick="showSection('enrollment')">Select Plan</a>
+                </div>
+                <div class="pricing-card popular">
+                    <h3>Intermediate Pack</h3>
+                    <div class="price">₹7,999 <span>/series</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check-circle"></i> 25 Full-length Tests</li>
+                        <li><i class="fas fa-check-circle"></i> Advanced Analysis</li>
+                        <li><i class="fas fa-check-circle"></i> Priority Support</li>
+                        <li><i class="fas fa-check-circle"></i> 1 Year Access</li>
+                    </ul>
+                    <a href="#" class="cta-button" onclick="showSection('enrollment')">Select Plan</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Final Pack</h3>
+                    <div class="price">₹9,999 <span>/series</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check-circle"></i> 35 Full-length Tests</li>
+                        <li><i class="fas fa-check-circle"></i> Comprehensive Analysis</li>
+                        <li><i class="fas fa-check-circle"></i> 24/7 Support</li>
+                        <li><i class="fas fa-check-circle"></i> Lifetime Access</li>
+                    </ul>
+                    <a href="#" class="cta-button" onclick="showSection('enrollment')">Select Plan</a>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="step-box">
-            <h2>Next Steps</h2>
-            <p>Once your website is live, we can work on:</p>
-            <ol>
-                <li>Student login system</li>
-                <li>Test series upload functionality</li>
-                <li>Answer sheet submission</li>
-                <li>Automated scoring system</li>
-                <li>Results display</li>
-            </ol>
-            <p>Complete these 5 steps first, and then we'll move to the next phase.</p>
+    <!-- Enrollment Section -->
+    <section id="enrollment" class="enrollment">
+        <div class="container">
+            <div class="main-content">
+                <div class="form-container">
+                    <h1 class="page-title">Enroll in CA Test Series</h1>
+                    <p>Fill out the form below to enroll in our test series program.</p>
+                    
+                    <div id="alertBox" class="alert"></div>
+                    
+                    <form id="enrollmentForm">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Mobile Number *</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="Enter your 10-digit mobile number" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="city">City *</label>
+                            <input type="text" id="city" class="form-control" placeholder="Enter your city" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="course">Select Course *</label>
+                            <select id="course" class="form-control" required>
+                                <option value="">Choose a course</option>
+                                <option value="CA Foundation">CA Foundation</option>
+                                <option value="CA Intermediate">CA Intermediate</option>
+                                <option value="CA Final">CA Final</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-block">Enroll Now</button>
+                    </form>
+                </div>
+                
+                <div class="info-container">
+                    <h2>Our Test Series Packages</h2>
+                    <p>Choose the right test series for your preparation needs.</p>
+                    
+                    <div class="test-cards">
+                        <div class="test-card">
+                            <h3>CA Foundation</h3>
+                            <div class="price">₹4,999</div>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> 15 Full-length Tests</li>
+                                <li><i class="fas fa-check-circle"></i> Basic Performance Analysis</li>
+                                <li><i class="fas fa-check-circle"></i> Email Support</li>
+                                <li><i class="fas fa-check-circle"></i> 6 Months Access</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="test-card">
+                            <h3>CA Intermediate</h3>
+                            <div class="price">₹7,999</div>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> 25 Full-length Tests</li>
+                                <li><i class="fas fa-check-circle"></i> Advanced Analysis</li>
+                                <li><i class="fas fa-check-circle"></i> Priority Support</li>
+                                <li><i class="fas fa-check-circle"></i> 1 Year Access</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="test-card">
+                            <h3>CA Final</h3>
+                            <div class="price">₹9,999</div>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> 35 Full-length Tests</li>
+                                <li><i class="fas fa-check-circle"></i> Comprehensive Analysis</li>
+                                <li><i class="fas fa-check-circle"></i> 24/7 Support</li>
+                                <li><i class="fas fa-check-circle"></i> Lifetime Access</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 30px; background: #e0f2fe; padding: 20px; border-radius: 8px;">
+                        <h3>Why Choose Our Test Series?</h3>
+                        <ul style="list-style: none; margin-top: 15px;">
+                            <li><i class="fas fa-check" style="color: var(--success); margin-right: 10px;"></i> Rank Improvement Guarantee</li>
+                            <li><i class="fas fa-check" style="color: var(--success); margin-right: 10px;"></i> Expertly Designed Tests</li>
+                            <li><i class="fas fa-check" style="color: var(--success); margin-right: 10px;"></i> Detailed Performance Analytics</li>
+                            <li><i class="fas fa-check" style="color: var(--success); margin-right: 10px;"></i> Personal Mentorship</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
+    <!-- Footer -->
     <footer>
-        <p>CA MasterTest Website Launch Guide | Follow these steps to get your website live</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>CA MasterTest</h3>
+                    <p>The most effective test series program for CA aspirants with guaranteed rank improvement.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" onclick="showSection('home')">Home</a></li>
+                        <li><a href="#" onclick="showSection('pricing')">Pricing</a></li>
+                        <li><a href="#" onclick="showSection('enrollment')">Enroll Now</a></li>
+                        <li><a href="#">Results</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Test Series</h3>
+                    <ul>
+                        <li><a href="#">CA Foundation</a></li>
+                        <li><a href="#">CA Intermediate</a></li>
+                        <li><a href="#">CA Final</a></li>
+                        <li><a href="#">Free Tests</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-phone"></i> +91 9876543210</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> info@camastertest.com</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> New Delhi, India</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 CA MasterTest. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
 
     <script>
-        let completedSteps = 0;
-        
-        function markCompleted(stepNumber) {
-            const stepElement = document.getElementById(`step${stepNumber}`);
-            stepElement.classList.add('completed');
+        // Show/hide sections
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.remove('active-section');
+            });
+            document.getElementById(sectionId).classList.add('active-section');
             
-            // Update progress
-            completedSteps++;
-            document.getElementById('completedCount').textContent = completedSteps;
-            document.getElementById('progressBar').style.width = (completedSteps * 20) + '%';
-            
-            // Show completed steps indicator
-            if (completedSteps > 0) {
-                document.getElementById('completedSteps').style.display = 'block';
-            }
-            
-            // Show celebration when all steps are completed
-            if (completedSteps === 5) {
-                setTimeout(() => {
-                    alert('🎉 Congratulations! You have completed all initial steps. Your website is now live!');
-                }, 500);
-            }
+            // Scroll to top
+            window.scrollTo(0, 0);
         }
+        
+        // Form submission
+        document.getElementById('enrollmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const city = document.getElementById('city').value;
+            const course = document.getElementById('course').value;
+            
+            // Simple validation
+            if (!name || !email || !phone || !city || !course) {
+                showAlert('Please fill all required fields', 'error');
+                return;
+            }
+            
+            if (phone.length !== 10 || isNaN(phone)) {
+                showAlert('Please enter a valid 10-digit mobile number', 'error');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            submitBtn.textContent = 'Processing...';
+            submitBtn.disabled = true;
+            
+            // Send data to Google Sheets
+            sendDataToGoogleSheets(name, email, phone, city, course);
+        });
+        
+        function sendDataToGoogleSheets(name, email, phone, city, course) {
+            // This is a mock function since we can't directly access Google Sheets from client-side JavaScript
+            // In a real implementation, you would use Google Apps Script or a server-side API
+            
+            // Simulate API call with timeout
+            setTimeout(() => {
+                // For demonstration purposes, we'll just show a success message
+                showAlert('Enrollment successful! We will contact you shortly.', 'success');
+                
+                // Reset form
+                document.getElementById('enrollmentForm').reset();
+                
+                // Reset button
+                const submitBtn = document.querySelector('button[type="submit"]');
+                submitBtn.textContent = 'Enroll Now';
+                submitBtn.disabled = false;
+            }, 1500);
+        }
+        
+        function showAlert(message, type) {
+            const alertBox = document.getElementById('alertBox');
+            alertBox.textContent = message;
+            alertBox.className = 'alert';
+            alertBox.classList.add(type === 'success' ? 'alert-success' : 'alert-error');
+            alertBox.style.display = 'block';
+            
+            // Hide alert after 5 seconds
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Feature card animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const featureCards = document.querySelectorAll('.feature-card');
+            
+            featureCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                    this.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1)';
+                });
+            });
+        });
     </script>
 </body>
 </html>
