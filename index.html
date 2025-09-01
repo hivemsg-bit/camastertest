@@ -1,12 +1,255 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CA Test Series</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CA MasterTest - Live Version</title>
+    <style>
+        /* All the CSS from earlier remains here */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+        }
+        .step-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 5px solid #2563eb;
+        }
+        .step-number {
+            background: #2563eb;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        h1 {
+            color: #1e40af;
+            text-align: center;
+            margin: 20px 0;
+        }
+        h2 {
+            color: #2563eb;
+            display: flex;
+            align-items: center;
+        }
+        .completed {
+            border-left-color: #10b981;
+        }
+        .completed .step-number {
+            background: #10b981;
+        }
+        .note {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .btn {
+            background: #2563eb;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background: #1e40af;
+        }
+        .btn-success {
+            background: #10b981;
+        }
+        .btn-success:hover {
+            background: #059669;
+        }
+        .progress-container {
+            background: #e5e7eb;
+            height: 10px;
+            border-radius: 5px;
+            margin: 30px 0;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            background: #2563eb;
+            width: 20%;
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+        .completed-steps {
+            background: #10b981;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CA MasterTest Website Launch Guide</h1>
+        <p>Step-by-Step Instructions to Get Your Website Live</p>
+    </header>
+
+    <div class="container">
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div id="completedSteps" class="completed-steps">
+            Completed Steps: <span id="completedCount">0</span>/5
+        </div>
+
+        <div class="step-box" id="step1">
+            <h2><div class="step-number">1</div>Save Your Website File</h2>
+            <p>Copy the HTML code and save it as <strong>index.html</strong> on your computer.</p>
+            <p>Make sure the file has the <strong>.html</strong> extension.</p>
+            <div class="note">
+                <strong>Note:</strong> You can use Notepad (Windows) or TextEdit (Mac) to create the file. 
+                Just make sure to select "All Files" when saving and add the .html extension.
+            </div>
+            <button class="btn" onclick="markCompleted(1)">Mark as Completed</button>
+        </div>
+
+        <div class="step-box" id="step2">
+            <h2><div class="step-number">2</div>Create GitHub Account</h2>
+            <p>Go to <a href="https://github.com/" target="_blank">GitHub.com</a> and create a free account.</p>
+            <p>GitHub will host your website for free with GitHub Pages.</p>
+            <div class="note">
+                <strong>Note:</strong> Choose a username that you might want to use in your website URL 
+                (e.g., github.com/yourusername/camastertest)
+            </div>
+            <button class="btn" onclick="markCompleted(2)">Mark as Completed</button>
+        </div>
+
+        <div class="step-box" id="step3">
+            <h2><div class="step-number">3</div>Create a New Repository</h2>
+            <p>After logging in to GitHub:</p>
+            <ol>
+                <li>Click the "+" icon in the top right and select "New repository"</li>
+                <li>Name it <strong>camastertest</strong> (or similar)</li>
+                <li>Make sure it's set to <strong>Public</strong></li>
+                <li>Check "Add a README file"</li>
+                <li>Click "Create repository"</li>
+            </ol>
+            <div class="note">
+                <strong>Note:</strong> The repository name will be part of your website URL, 
+                so choose something professional and easy to remember.
+            </div>
+            <button class="btn" onclick="markCompleted(3)">Mark as Completed</button>
+        </div>
+
+        <div class="step-box" id="step4">
+            <h2><div class="step-number">4</div>Upload Your Website File</h2>
+            <p>In your new repository:</p>
+            <ol>
+                <li>Click "Add file" → "Upload files"</li>
+                <li>Drag and drop your <strong>index.html</strong> file</li>
+                <li>Add a commit message like "Add website file"</li>
+                <li>Click "Commit changes"</li>
+            </ol>
+            <div class="note">
+                <strong>Note:</strong> You can upload additional files like images later, 
+                but for now, just focus on getting the HTML file online.
+            </div>
+            <button class="btn" onclick="markCompleted(4)">Mark as Completed</button>
+        </div>
+
+        <div class="step-box" id="step5">
+            <h2><div class="step-number">5</div>Enable GitHub Pages</h2>
+            <p>Now enable GitHub Pages to make your website live:</p>
+            <ol>
+                <li>Go to your repository's <strong>Settings</strong> tab</li>
+                <li>Click <strong>Pages</strong> in the left sidebar</li>
+                <li>Under "Source", select <strong>main</strong> branch</li>
+                <li>Click <strong>Save</strong></li>
+                <li>Wait a few minutes, then refresh the page</li>
+                <li>You'll see a message with your live website URL!</li>
+            </ol>
+            <div class="note">
+                <strong>Note:</strong> Your website will be available at:<br>
+                <strong>https://yourusername.github.io/camastertest/</strong>
+            </div>
+            <button class="btn btn-success" onclick="markCompleted(5)">All Steps Completed!</button>
+        </div>
+
+        <div class="step-box">
+            <h2>Next Steps</h2>
+            <p>Once your website is live, we can work on:</p>
+            <ol>
+                <li>Student login system</li>
+                <li>Test series upload functionality</li>
+                <li>Answer sheet submission</li>
+                <li>Automated scoring system</li>
+                <li>Results display</li>
+            </ol>
+            <p>Complete these 5 steps first, and then we'll move to the next phase.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>CA MasterTest Website Launch Guide | Follow these steps to get your website live</p>
+    </footer>
+
+    <script>
+        let completedSteps = 0;
+        
+        function markCompleted(stepNumber) {
+            const stepElement = document.getElementById(`step${stepNumber}`);
+            stepElement.classList.add('completed');
+            
+            // Update progress
+            completedSteps++;
+            document.getElementById('completedCount').textContent = completedSteps;
+            document.getElementById('progressBar').style.width = (completedSteps * 20) + '%';
+            
+            // Show completed steps indicator
+            if (completedSteps > 0) {
+                document.getElementById('completedSteps').style.display = 'block';
+            }
+            
+            // Show celebration when all steps are completed
+            if (completedSteps === 5) {
+                setTimeout(() => {
+                    alert('🎉 Congratulations! You have completed all initial steps. Your website is now live!');
+                }, 500);
+            }
+        }
+    </script>
+</body>
 </html>
