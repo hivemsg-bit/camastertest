@@ -246,7 +246,7 @@
                 </ul>
                 
                 <div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 8px; margin-top: 20px;">
-                    <p><strong>Note:</strong> This is a demo login page. In the next phase, we will implement the actual backend functionality.</p>
+                    <p><strong>Note:</strong> For demo purposes, you can use any email and password to login.</p>
                 </div>
             </div>
         </div>
@@ -278,16 +278,15 @@
             
             // Simulate login process
             setTimeout(() => {
-                // For demonstration purposes, we'll just show a success message
                 showAlert('Login successful! Redirecting to dashboard...', 'success');
                 
                 // Reset button
                 submitBtn.textContent = 'Login';
                 submitBtn.disabled = false;
                 
-                // Simulate redirect
+                // Redirect to dashboard after a short delay
                 setTimeout(() => {
-                    alert('In the next step, we will implement the actual dashboard with test upload/download functionality.');
+                    window.location.href = 'dashboard.html';
                 }, 1500);
             }, 1500);
         });
