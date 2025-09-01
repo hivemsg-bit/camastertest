@@ -309,6 +309,21 @@
             font-weight: 600;
         }
         
+        /* File Upload Preview */
+        .file-preview {
+            margin-top: 15px;
+            padding: 10px;
+            background: #f1f5f9;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .file-preview img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 5px;
+        }
+        
         /* Footer */
         footer {
             background-color: var(--secondary);
@@ -440,7 +455,7 @@
                         <p><i class="fas fa-calendar"></i> Available until: 30 Oct 2023</p>
                         <p><i class="fas fa-download"></i> 1,245 Downloads</p>
                     </div>
-                    <a href="#" class="btn btn-full">Download Test Paper</a>
+                    <button class="btn btn-full" onclick="downloadTest('CA Foundation - Test 1')">Download Test Paper</button>
                 </div>
                 
                 <div class="test-card">
@@ -454,7 +469,7 @@
                         <p><i class="fas fa-calendar"></i> Available until: 5 Nov 2023</p>
                         <p><i class="fas fa-download"></i> 987 Downloads</p>
                     </div>
-                    <a href="#" class="btn btn-full">Download Test Paper</a>
+                    <button class="btn btn-full" onclick="downloadTest('CA Foundation - Test 2')">Download Test Paper</button>
                 </div>
                 
                 <div class="test-card">
@@ -468,7 +483,7 @@
                         <p><i class="fas fa-calendar"></i> Available until: 12 Nov 2023</p>
                         <p><i class="fas fa-download"></i> 756 Downloads</p>
                     </div>
-                    <a href="#" class="btn btn-full">Download Test Paper</a>
+                    <button class="btn btn-full" onclick="downloadTest('CA Foundation - Test 3')">Download Test Paper</button>
                 </div>
                 
                 <div class="test-card">
@@ -482,7 +497,7 @@
                         <p><i class="fas fa-calendar"></i> Available until: 15 Nov 2023</p>
                         <p><i class="fas fa-download"></i> 542 Downloads</p>
                     </div>
-                    <a href="#" class="btn btn-full">Download Test Paper</a>
+                    <button class="btn btn-full" onclick="downloadTest('CA Intermediate - Test 1')">Download Test Paper</button>
                 </div>
             </div>
         </div>
@@ -506,8 +521,14 @@
                         
                         <div class="form-group">
                             <label for="answerFile">Upload Answer Sheet (PDF or Image)</label>
-                            <input type="file" id="answerFile" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required>
+                            <input type="file" id="answerFile" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required onchange="previewFile()">
                             <small>Maximum file size: 10MB</small>
+                        </div>
+                        
+                        <div id="filePreview" class="file-preview">
+                            <p>File Preview:</p>
+                            <img id="previewImg" src="" alt="File preview">
+                            <p id="fileName"></p>
                         </div>
                         
                         <div class="form-group">
@@ -564,7 +585,7 @@
                             <td>20 Oct 2023</td>
                             <td class="score">82/100</td>
                             <td>12</td>
-                            <td><a href="#" class="btn btn-sm">View Evaluation</a></td>
+                            <td><button class="btn btn-sm" onclick="viewEvaluation('CA Foundation - Test 2')">View Evaluation</button></td>
                         </tr>
                         <tr>
                             <td>CA Foundation - Test 1</td>
@@ -572,7 +593,7 @@
                             <td>18 Oct 2023</td>
                             <td class="score">76/100</td>
                             <td>18</td>
-                            <td><a href="#" class="btn btn-sm">View Evaluation</a></td>
+                            <td><button class="btn btn-sm" onclick="viewEvaluation('CA Foundation - Test 1')">View Evaluation</button></td>
                         </tr>
                         <tr>
                             <td>CA Intermediate - Test 1</td>
@@ -580,7 +601,7 @@
                             <td>15 Oct 2023</td>
                             <td class="score">85/100</td>
                             <td>8</td>
-                            <td><a href="#" class="btn btn-sm">View Evaluation</a></td>
+                            <td><button class="btn btn-sm" onclick="viewEvaluation('CA Intermediate - Test 1')">View Evaluation</button></td>
                         </tr>
                         <tr>
                             <td>CA Foundation - Test 3</td>
@@ -588,7 +609,7 @@
                             <td>12 Oct 2023</td>
                             <td class="pending">Evaluation Pending</td>
                             <td>-</td>
-                            <td><a href="#" class="btn btn-sm" style="background: #94a3b8;">Wait</a></td>
+                            <td><button class="btn btn-sm" style="background: #94a3b8;" disabled>Wait</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -608,11 +629,11 @@
                 <div class="test-card">
                     <h3>Download Evaluation Reports</h3>
                     <div class="test-details">
-                        <p><i class="fas fa-file-pdf"></i> <a href="#" style="color: var(--primary);">CA Foundation - Test 2 Evaluation Report</a></p>
-                        <p><i class="fas fa-file-pdf"></i> <a href="#" style="color: var(--primary);">CA Foundation - Test 1 Evaluation Report</a></p>
-                        <p><i class="fas fa-file-pdf"></i> <a href="#" style="color: var(--primary);">CA Intermediate - Test 1 Evaluation Report</a></p>
+                        <p><i class="fas fa-file-pdf"></i> <a href="#" onclick="downloadReport('CA Foundation - Test 2')" style="color: var(--primary);">CA Foundation - Test 2 Evaluation Report</a></p>
+                        <p><i class="fas fa-file-pdf"></i> <a href="#" onclick="downloadReport('CA Foundation - Test 1')" style="color: var(--primary);">CA Foundation - Test 1 Evaluation Report</a></p>
+                        <p><i class="fas fa-file-pdf"></i> <a href="#" onclick="downloadReport('CA Intermediate - Test 1')" style="color: var(--primary);">CA Intermediate - Test 1 Evaluation Report</a></p>
                     </div>
-                    <a href="#" class="btn btn-full">Download All Reports</a>
+                    <button class="btn btn-full" onclick="downloadAllReports()">Download All Reports</button>
                 </div>
             </div>
         </div>
@@ -678,16 +699,43 @@
             });
         });
         
+        // File upload preview
+        function previewFile() {
+            const file = document.getElementById('answerFile').files[0];
+            const preview = document.getElementById('filePreview');
+            const previewImg = document.getElementById('previewImg');
+            const fileName = document.getElementById('fileName');
+            
+            if (file) {
+                preview.style.display = 'block';
+                fileName.textContent = `File: ${file.name} (${(file.size / 1024).toFixed(2)} KB)`;
+                
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        previewImg.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    previewImg.src = '';
+                    previewImg.alt = 'PDF file preview not available';
+                }
+            } else {
+                preview.style.display = 'none';
+            }
+        }
+        
         // Form submission
         document.getElementById('uploadForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             // Get form values
-            const testSelect = document.getElementById('testSelect').value;
-            const answerFile = document.getElementById('answerFile').value;
+            const testSelect = document.getElementById('testSelect');
+            const answerFile = document.getElementById('answerFile');
+            const selectedTest = testSelect.options[testSelect.selectedIndex].text;
             
             // Simple validation
-            if (!testSelect || !answerFile) {
+            if (!testSelect.value || !answerFile.value) {
                 alert('Please select a test and upload your answer sheet.');
                 return;
             }
@@ -699,7 +747,7 @@
             
             // Simulate upload process
             setTimeout(() => {
-                alert('Answer sheet uploaded successfully! Your answers will be evaluated within 24 hours.');
+                alert(`Answer sheet for ${selectedTest} uploaded successfully! Your answers will be evaluated within 24 hours.`);
                 
                 // Reset button
                 submitBtn.textContent = 'Submit Answers';
@@ -707,6 +755,7 @@
                 
                 // Reset form
                 document.getElementById('uploadForm').reset();
+                document.getElementById('filePreview').style.display = 'none';
                 
                 // Switch to results tab
                 tabs.forEach(t => t.classList.remove('active'));
@@ -716,6 +765,30 @@
                 document.getElementById('results').classList.add('active');
             }, 1500);
         });
+        
+        // Download test function
+        function downloadTest(testName) {
+            alert(`Downloading ${testName}.pdf\n\nIn a real system, this would download the actual test file.`);
+            // In a real application, this would trigger a file download
+        }
+        
+        // View evaluation function
+        function viewEvaluation(testName) {
+            alert(`Showing evaluation for ${testName}\n\nIn a real system, this would display detailed evaluation with teacher comments.`);
+            // In a real application, this would show a modal with evaluation details
+        }
+        
+        // Download report function
+        function downloadReport(testName) {
+            alert(`Downloading evaluation report for ${testName}\n\nIn a real system, this would download a PDF report.`);
+            // In a real application, this would trigger a file download
+        }
+        
+        // Download all reports function
+        function downloadAllReports() {
+            alert('Downloading all evaluation reports as a ZIP file\n\nIn a real system, this would download a compressed file containing all reports.');
+            // In a real application, this would trigger a file download
+        }
     </script>
 </body>
 </html>
