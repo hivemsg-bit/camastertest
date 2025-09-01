@@ -1,1 +1,886 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Series - CA MasterTest</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #2563eb;
+            --secondary: #0f172a;
+            --accent: #f59e0b;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --success: #22c55e;
+            --error: #ef4444;
+        }
+        
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        nav ul li a.active {
+            background: var(--accent);
+            color: white;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 40px 0;
+        }
+        
+        .welcome-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .welcome-section h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #e2e8f0;
+            margin-bottom: 30px;
+        }
+        
+        .tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #64748b;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Test Grid */
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .test-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .test-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .test-card h3 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+        
+        .test-card .test-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        .test-card .test-details {
+            margin-bottom: 20px;
+        }
+        
+        .test-card .test-details p {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .test-card .test-details i {
+            margin-right: 8px;
+            color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: #e69008;
+            transform: translateY(-2px);
+        }
+        
+        .btn-sm {
+            padding: 8px 15px;
+            font-size: 14px;
+        }
+        
+        .btn-full {
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        /* Upload Section */
+        .upload-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        .upload-form {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px dashed #cbd5e1;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--secondary);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+        
+        /* Results Section */
+        .results-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .results-table th, .results-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .results-table th {
+            background: var(--light);
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .results-table tr:hover {
+            background: #f8fafc;
+        }
+        
+        .score {
+            font-weight: 600;
+            color: var(--success);
+        }
+        
+        .pending {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        /* File Upload Preview */
+        .file-preview {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            display: none;
+            border: 1px solid #cbd5e1;
+        }
+        
+        .file-preview img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 5px;
+            margin-top: 10px;
+            border: 1px solid #cbd5e1;
+            display: block;
+        }
+        
+        .file-info {
+            margin-top: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+        
+        .modal h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .modal-close {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tab {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .test-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>CA MasterTest</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="test-series.html" class="active">Test Series</a></li>
+                        <li><a href="#">Results</a></li>
+                        <li><a href="login.html">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
 
+    <!-- Main Content -->
+    <div class="container main-content">
+        <!-- Welcome Section -->
+        <div class="welcome-section">
+            <h1>CA Test Series Portal</h1>
+            <p>Download tests, upload your answer sheets, and track your performance</p>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <div class="tab active" data-tab="available-tests">Available Tests</div>
+            <div class="tab" data-tab="upload-answers">Upload Answers</div>
+            <div class="tab" data-tab="results">Your Results</div>
+        </div>
+
+        <!-- Available Tests -->
+        <div class="tab-content active" id="available-tests">
+            <h2 class="section-title">Available Test Series</h2>
+            <div class="test-grid">
+                <div class="test-card">
+                    <h3>CA Foundation - Test 1</h3>
+                    <div class="test-meta">
+                        <span>Accounting</span>
+                        <span>100 Marks</span>
+                    </div>
+                    <div class="test-details">
+                        <p><i class="fas fa-clock"></i> Duration: 3 Hours</p>
+                        <p><i class="fas fa-calendar"></i> Available until: 30 Oct 2023</p>
+                        <p><i class="fas fa-download"></i> 1,245 Downloads</p>
+                    </div>
+                    <button class="btn btn-full" onclick="downloadTest('CA Foundation - Test 1', event)">Download Test Paper</button>
+                </div>
+                
+                <div class="test-card">
+                    <h3>CA Foundation - Test 2</h3>
+                    <div class="test-meta">
+                        <span>Business Laws</span>
+                        <span>100 Marks</span>
+                    </div>
+                    <div class="test-details">
+                        <p><i class="fas fa-clock"></i> Duration: 3 Hours</p>
+                        <p><i class="fas fa-calendar"></i> Available until: 5 Nov 2023</p>
+                        <p><i class="fas fa-download"></i> 987 Downloads</p>
+                    </div>
+                    <button class="btn btn-full" onclick="downloadTest('CA Foundation - Test 2', event)">Download Test Paper</button>
+                </div>
+                
+                <div class="test-card">
+                    <h3>CA Foundation - Test 3</h3>
+                    <div class="test-meta">
+                        <span>Quantitative Aptitude</span>
+                        <span>100 Marks</span>
+                    </div>
+                    <div class="test-details">
+                        <p><i class="fas fa-clock"></i> Duration: 2 Hours</p>
+                        <p><i class="fas fa-calendar"></i> Available until: 12 Nov 2023</p>
+                        <p><i class="fas fa-download"></i> 756 Downloads</p>
+                    </div>
+                    <button class="btn btn-full" onclick="downloadTest('CA Foundation - Test 3', event)">Download Test Paper</button>
+                </div>
+                
+                <div class="test-card">
+                    <h3>CA Intermediate - Test 1</h3>
+                    <div class="test-meta">
+                        <span>Advanced Accounting</span>
+                        <span>100 Marks</span>
+                    </div>
+                    <div class="test-details">
+                        <p><i class="fas fa-clock"></i> Duration: 3 Hours</p>
+                        <p><i class="fas fa-calendar"></i> Available until: 15 Nov 2023</p>
+                        <p><i class="fas fa-download"></i> 542 Downloads</p>
+                    </div>
+                    <button class="btn btn-full" onclick="downloadTest('CA Intermediate - Test 1', event)">Download Test Paper</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upload Answers -->
+        <div class="tab-content" id="upload-answers">
+            <div class="upload-section">
+                <h2 class="section-title">Upload Your Answer Sheet</h2>
+                <div class="upload-form">
+                    <form id="uploadForm">
+                        <div class="form-group">
+                            <label for="testSelect">Select Test</label>
+                            <select id="testSelect" class="form-control" required>
+                                <option value="">Choose a test</option>
+                                <option value="test1">CA Foundation - Test 1 (Accounting)</option>
+                                <option value="test2">CA Foundation - Test 2 (Business Laws)</option>
+                                <option value="test3">CA Foundation - Test 3 (Quantitative Aptitude)</option>
+                                <option value="test4">CA Intermediate - Test 1 (Advanced Accounting)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="answerFile">Upload Answer Sheet (PDF or Image)</label>
+                            <input type="file" id="answerFile" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required onchange="previewFile()">
+                            <small>Maximum file size: 10MB</small>
+                        </div>
+                        
+                        <div id="filePreview" class="file-preview">
+                            <p><strong>File Preview:</strong></p>
+                            <img id="previewImg" src="" alt="File preview">
+                            <div class="file-info">
+                                <p id="fileName"></p>
+                                <p id="fileSize"></p>
+                                <p id="fileType"></p>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="studentNotes">Additional Notes (Optional)</label>
+                            <textarea id="studentNotes" class="form-control" rows="3" placeholder="Any additional information about your submission"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">Submit Answers</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="test-grid">
+                <div class="test-card">
+                    <h3>How to Upload Answers</h3>
+                    <div class="test-details">
+                        <p><i class="fas fa-info-circle"></i> Upload clear images or PDF of your answer sheets</p>
+                        <p><i class="fas fa-check-circle"></i> Write your Enrollment ID on every page</p>
+                        <p><i class="fas fa-clock"></i> Evaluation completed within 24 hours</p>
+                        <p><i class="fas fa-chart-line"></i> Detailed feedback provided for each answer</p>
+                    </div>
+                </div>
+                
+                <div class="test-card">
+                    <h3>Recent Uploads</h3>
+                    <div class="test-details">
+                        <p><i class="fas fa-file-alt"></i> <strong>CA Foundation - Test 2</strong><br>Uploaded: 20 Oct 2023<br>Status: <span class="score">Evaluated</span></p>
+                        <p><i class="fas fa-file-alt"></i> <strong>CA Foundation - Test 1</strong><br>Uploaded: 18 Oct 2023<br>Status: <span class="score">Evaluated</span></p>
+                        <p><i class="fas fa-file-alt"></i> <strong>CA Intermediate - Test 1</strong><br>Uploaded: 15 Oct 2023<br>Status: <span class="score">Evaluated</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div class="tab-content" id="results">
+            <div class="results-section">
+                <h2 class="section-title">Your Test Results</h2>
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Test Name</th>
+                            <th>Subject</th>
+                            <th>Date Submitted</th>
+                            <th>Marks Obtained</th>
+                            <th>Rank</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CA Foundation - Test 2</td>
+                            <td>Business Laws</td>
+                            <td>20 Oct 2023</td>
+                            <td class="score">82/100</td>
+                            <td>12</td>
+                            <td><button class="btn btn-sm" onclick="viewEvaluation('CA Foundation - Test 2', event)">View Evaluation</button></td>
+                        </tr>
+                        <tr>
+                            <td>CA Foundation - Test 1</td>
+                            <td>Accounting</td>
+                            <td>18 Oct 2023</td>
+                            <td class="score">76/100</td>
+                            <td>18</td>
+                            <td><button class="btn btn-sm" onclick="viewEvaluation('CA Foundation - Test 1', event)">View Evaluation</button></td>
+                        </tr>
+                        <tr>
+                            <td>CA Intermediate - Test 1</td>
+                            <td>Advanced Accounting</td>
+                            <td>15 Oct 2023</td>
+                            <td class="score">85/100</td>
+                            <td>8</td>
+                            <td><button class="btn btn-sm" onclick="viewEvaluation('CA Intermediate - Test 1', event)">View Evaluation</button></td>
+                        </tr>
+                        <tr>
+                            <td>CA Foundation - Test 3</td>
+                            <td>Quantitative Aptitude</td>
+                            <td>12 Oct 2023</td>
+                            <td class="pending">Evaluation Pending</td>
+                            <td>-</td>
+                            <td><button class="btn btn-sm" style="background: #94a3b8;" disabled>Wait</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="test-grid">
+                <div class="test-card">
+                    <h3>Performance Statistics</h3>
+                    <div class="test-details">
+                        <p><i class="fas fa-chart-line"></i> <strong>Overall Average:</strong> 81/100</p>
+                        <p><i class="fas fa-trophy"></i> <strong>Best Subject:</strong> Advanced Accounting (85/100)</p>
+                        <p><i class="fas fa-clock"></i> <strong>Improvement Needed:</strong> Business Laws (76/100)</p>
+                        <p><i class="fas fa-list-ol"></i> <strong>Overall Rank:</strong> 24 out of 350 students</p>
+                    </div>
+                </div>
+                
+                <div class="test-card">
+                    <h3>Download Evaluation Reports</h3>
+                    <div class="test-details">
+                        <p><i class="fas fa-file-pdf"></i> <a href="#" onclick="downloadReport('CA Foundation - Test 2', event)" style="color: var(--primary);">CA Foundation - Test 2 Evaluation Report</a></p>
+                        <p><i class="fas fa-file-pdf"></i> <a href="#" onclick="downloadReport('CA Foundation - Test 1', event)" style="color: var(--primary);">CA Foundation - Test 1 Evaluation Report</a></p>
+                        <p><i class="fas fa-file-pdf"></i> <a href="#" onclick="downloadReport('CA Intermediate - Test 1', event)" style="color: var(--primary);">CA Intermediate - Test 1 Evaluation Report</a></p>
+                    </div>
+                    <button class="btn btn-full" onclick="downloadAllReports(event)">Download All Reports</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Messages -->
+    <div id="messageModal" class="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle">Message</h3>
+            <p id="modalMessage"></p>
+            <button class="modal-close" onclick="closeModal()">OK</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>CA MasterTest</h3>
+                    <p>The most effective test series program for CA aspirants with guaranteed rank improvement.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="test-series.html">Test Series</a></li>
+                        <li><a href="#">Results</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Test Series</h3>
+                    <ul>
+                        <li><a href="#">CA Foundation</a></li>
+                        <li><a href="#">CA Intermediate</a></li>
+                        <li><a href="#">CA Final</a></li>
+                        <li><a href="#">Free Tests</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-phone"></i> +91 9876543210</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> info@camastertest.com</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> New Delhi, India</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 CA MasterTest. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+                
+                // Remove active class from all tabs and contents
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // File upload preview
+        function previewFile() {
+            const file = document.getElementById('answerFile').files[0];
+            const preview = document.getElementById('filePreview');
+            const previewImg = document.getElementById('previewImg');
+            const fileName = document.getElementById('fileName');
+            const fileSize = document.getElementById('fileSize');
+            const fileType = document.getElementById('fileType');
+            
+            if (file) {
+                preview.style.display = 'block';
+                fileName.textContent = `Name: ${file.name}`;
+                fileSize.textContent = `Size: ${(file.size / 1024).toFixed(2)} KB`;
+                fileType.textContent = `Type: ${file.type}`;
+                
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        previewImg.src = e.target.result;
+                        previewImg.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    previewImg.style.display = 'none';
+                    previewImg.src = '';
+                    previewImg.alt = 'PDF file preview not available';
+                }
+            } else {
+                preview.style.display = 'none';
+            }
+        }
+        
+        // Form submission
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const testSelect = document.getElementById('testSelect');
+            const answerFile = document.getElementById('answerFile');
+            const selectedTest = testSelect.options[testSelect.selectedIndex].text;
+            
+            // Simple validation
+            if (!testSelect.value || !answerFile.value) {
+                showModal('Error', 'Please select a test and upload your answer sheet.');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            submitBtn.textContent = 'Uploading...';
+            submitBtn.disabled = true;
+            
+            // Simulate upload process
+            setTimeout(() => {
+                showModal('Success', `Answer sheet for ${selectedTest} uploaded successfully! Your answers will be evaluated within 24 hours.`);
+                
+                // Reset button
+                submitBtn.textContent = 'Submit Answers';
+                submitBtn.disabled = false;
+                
+                // Reset form
+                document.getElementById('uploadForm').reset();
+                document.getElementById('filePreview').style.display = 'none';
+                
+                // Switch to results tab
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                document.querySelector('[data-tab="results"]').classList.add('active');
+                document.getElementById('results').classList.add('active');
+            }, 1500);
+        });
+        
+        // Download test function
+        function downloadTest(testName, event) {
+            if (event) event.preventDefault();
+            showModal('Download', `Downloading ${testName}.pdf\n\nIn a real system, this would download the actual test file.`);
+            // In a real application, this would trigger a file download
+        }
+        
+        // View evaluation function
+        function viewEvaluation(testName, event) {
+            if (event) event.preventDefault();
+            showModal('Evaluation', `Showing evaluation for ${testName}\n\nIn a real system, this would display detailed evaluation with teacher comments.`);
+            // In a real application, this would show a modal with evaluation details
+        }
+        
+        // Download report function
+        function downloadReport(testName, event) {
+            if (event) event.preventDefault();
+            showModal('Download', `Downloading evaluation report for ${testName}\n\nIn a real system, this would download a PDF report.`);
+            // In a real application, this would trigger a file download
+        }
+        
+        // Download all reports function
+        function downloadAllReports(event) {
+            if (event) event.preventDefault();
+            showModal('Download', 'Downloading all evaluation reports as a ZIP file\n\nIn a real system, this would download a compressed file containing all reports.');
+            // In a real application, this would trigger a file download
+        }
+        
+        // Modal functions
+        function showModal(title, message) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalMessage').textContent = message;
+            document.getElementById('messageModal').style.display = 'flex';
+        }
+        
+        function closeModal() {
+            document.getElementById('messageModal').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('messageModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
