@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CA MasterTest - Student Login</title>
+    <title>Student Login - CA MasterTest</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -62,20 +62,6 @@
         .logo i {
             margin-right: 10px;
             color: var(--accent);
-        }
-        
-        .progress-container {
-            background: #e5e7eb;
-            height: 10px;
-            width: 100%;
-            overflow: hidden;
-        }
-        
-        .progress-bar {
-            height: 100%;
-            background: var(--accent);
-            width: 40%;
-            transition: width 0.5s ease;
         }
         
         .main-content {
@@ -191,49 +177,6 @@
             font-size: 1.2rem;
         }
         
-        .step-indicator {
-            display: flex;
-            justify-content: space-between;
-            margin: 30px 0;
-            padding: 0 20px;
-        }
-        
-        .step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex: 1;
-        }
-        
-        .step-number {
-            background: #e5e7eb;
-            color: var(--dark);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-        
-        .step.active .step-number {
-            background: var(--accent);
-            color: white;
-        }
-        
-        .step-text {
-            font-size: 0.9rem;
-            text-align: center;
-            color: #6b7280;
-        }
-        
-        .step.active .step-text {
-            color: var(--secondary);
-            font-weight: 500;
-        }
-        
         footer {
             text-align: center;
             padding: 20px;
@@ -261,33 +204,6 @@
                 <span>CA MasterTest</span>
             </div>
         </header>
-        
-        <div class="progress-container">
-            <div class="progress-bar"></div>
-        </div>
-        
-        <div class="step-indicator">
-            <div class="step active">
-                <div class="step-number">1</div>
-                <div class="step-text">Website Live</div>
-            </div>
-            <div class="step active">
-                <div class="step-number">2</div>
-                <div class="step-text">Login System</div>
-            </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <div class="step-text">Test Upload</div>
-            </div>
-            <div class="step">
-                <div class="step-number">4</div>
-                <div class="step-text">Answer Checking</div>
-            </div>
-            <div class="step">
-                <div class="step-number">5</div>
-                <div class="step-text">Results</div>
-            </div>
-        </div>
 
         <div class="main-content">
             <div class="login-container">
@@ -318,24 +234,19 @@
             </div>
             
             <div class="info-container">
-                <h2>Next Steps After Login System</h2>
-                <p>Once the login system is implemented, we'll work on:</p>
+                <h2>Student Dashboard Features</h2>
+                <p>After login, students can access:</p>
                 
                 <ul class="features-list">
-                    <li><i class="fas fa-upload"></i> Test series upload functionality</li>
-                    <li><i class="fas fa-download"></i> Student download area for tests</li>
-                    <li><i class="fas fa-file-upload"></i> Answer sheet submission system</li>
-                    <li><i class="fas fa-check-circle"></i> Automated answer checking</li>
-                    <li><i class="fas fa-chart-line"></i> Performance analytics and results</li>
+                    <li><i class="fas fa-download"></i> Download test series and study material</li>
+                    <li><i class="fas fa-upload"></i> Upload completed answer sheets</li>
+                    <li><i class="fas fa-check-circle"></i> View evaluated answer sheets with marks</li>
+                    <li><i class="fas fa-chart-line"></i> Track performance with detailed analytics</li>
+                    <li><i class="fas fa-trophy"></i> Compare ranks with other students</li>
                 </ul>
                 
-                <div class="note" style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 8px; margin-top: 20px;">
-                    <p><strong>Implementation Note:</strong> For a production system, you'll need:</p>
-                    <ul style="list-style: none; margin-top: 10px;">
-                        <li><i class="fas fa-server"></i> Backend server (Node.js, PHP, etc.)</li>
-                        <li><i class="fas fa-database"></i> Database (MySQL, MongoDB, etc.)</li>
-                        <li><i class="fas fa-shield-alt"></i> User authentication system</li>
-                    </ul>
+                <div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 8px; margin-top: 20px;">
+                    <p><strong>Note:</strong> This is a demo login page. In the next phase, we will implement the actual backend functionality.</p>
                 </div>
             </div>
         </div>
@@ -393,12 +304,6 @@
                 alertBox.style.display = 'none';
             }, 5000);
         }
-        
-        // Update progress bar
-        document.addEventListener('DOMContentLoaded', function() {
-            const progressBar = document.querySelector('.progress-bar');
-            progressBar.style.width = '40%';
-        });
     </script>
 </body>
 </html>
