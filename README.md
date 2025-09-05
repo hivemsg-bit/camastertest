@@ -31,6 +31,7 @@ npm run dev
 - GET /api/health
 - POST /api/auth/student/verify { idToken }
 - POST /api/auth/admin/register { email, password, name } (one-time)
+  - Guarded by `ENABLE_ADMIN_REGISTER=true`. Prefer CLI seeding below.
 - POST /api/auth/admin/login { email, password }
 - GET /api/papers
 - POST /api/papers/upload (admin, multipart file+title/subject)
@@ -53,6 +54,17 @@ npm run dev
    - New Project from repo, root `/frontend`
    - Build command `npm run build`, output `dist`
    - Add env vars from `.env.example` (especially `VITE_API_BASE_URL` pointing to Render URL)
+
+## Seed Admin via CLI (preferred)
+```
+cd backend
+cp .env.example .env
+# Fill Mongo + JWT + Firebase
+export SEED_ADMIN_EMAIL=admin@example.com
+export SEED_ADMIN_PASSWORD=StrongP@ssw0rd
+npm run seed
+```
+To temporarily allow HTTP register endpoint, set `ENABLE_ADMIN_REGISTER=true` in backend env and redeploy. Turn it off after use.
 
 ## Notes
 - Only verified students (via Firebase phone OTP) can generate signed download URLs to access files.

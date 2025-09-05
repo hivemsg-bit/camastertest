@@ -37,6 +37,9 @@ router.post('/student/verify', async (req, res) => {
 
 // Admin register (one-time seeding or via POST); keep simple
 router.post('/admin/register', async (req, res) => {
+  if (process.env.ENABLE_ADMIN_REGISTER !== 'true') {
+    return res.status(403).json({ message: 'Admin registration disabled' });
+  }
   try {
     const { email, password, name } = req.body;
     if (!email || !password) return res.status(400).json({ message: 'email and password required' });
