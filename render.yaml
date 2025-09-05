@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: ca-test-series-backend
+    env: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+      - key: PORT
+        value: 8080
+      - key: MONGODB_URI
+        sync: false
+      - key: ADMIN_JWT_SECRET
+        sync: false
+      - key: ADMIN_BOOTSTRAP_SECRET
+        sync: false
+      - key: FIREBASE_SERVICE_ACCOUNT_JSON
+        sync: false
+      - key: FIREBASE_STORAGE_BUCKET
+        sync: false
+      - key: CORS_ORIGIN
+        value: https://<your-vercel-domain>
+
